@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
 
 st.set_page_config(
     page_title="Car Price Prediction",
@@ -38,9 +39,12 @@ div[data-testid="stSidebar"] * {
 </style>
 """, unsafe_allow_html=True)
 
-model = pickle.load(
-    open(r'notebook\\Cars_Prediction.sav', 'rb')
-)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, 'notebook', 'Cars_Prediction.sav')
+
+
+model = pickle.load(open(model_path, 'rb'))
 
 st.title("🚗 Car Price Prediction")
 
